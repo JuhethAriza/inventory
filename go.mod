@@ -1,0 +1,1 @@
+module github.com/JuhethAriza/inventory.git
