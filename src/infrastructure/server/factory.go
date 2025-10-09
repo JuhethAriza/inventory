@@ -1,10 +1,10 @@
 package infraestructure
 
 import (
-	config "dev.azure.com/proyects-crm/CRM-ECOMMERS/_git/Backend-crm/src/common/config"
-	result "dev.azure.com/proyects-crm/CRM-ECOMMERS/_git/Backend-crm/src/common/response"
-	types "dev.azure.com/proyects-crm/CRM-ECOMMERS/_git/Backend-crm/src/common/types"
-	db "dev.azure.com/proyects-crm/CRM-ECOMMERS/_git/Backend-crm/src/infrastructure/db/adapter"
+	config "github.com/JuhethAriza/inventory/src/common/config"
+	result "github.com/JuhethAriza/inventory/src/common/response"
+	types "github.com/JuhethAriza/inventory/src/common/types"
+	db "github.com/JuhethAriza/inventory/src/infrastructure/db/adapter"
 
 	"go.uber.org/fx"
 )

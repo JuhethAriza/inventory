@@ -3,7 +3,8 @@ package infraestructure
 import (
 	"strings"
 
-	common "dev.azure.com/proyects-crm/CRM-ECOMMERS/_git/Backend-crm/src/common/auth"
+	common "github.com/JuhethAriza/inventory/src/common/auth"
+
 	"github.com/gofiber/fiber/v2"
 )
 

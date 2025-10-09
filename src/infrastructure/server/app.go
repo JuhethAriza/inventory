@@ -6,10 +6,12 @@ import (
 	"fmt"
 	"net/http"
 
-	config "dev.azure.com/proyects-crm/CRM-ECOMMERS/_git/Backend-crm/src/common/config"
-	types "dev.azure.com/proyects-crm/CRM-ECOMMERS/_git/Backend-crm/src/common/types"
-	middleware "dev.azure.com/proyects-crm/CRM-ECOMMERS/_git/Backend-crm/src/infrastructure/http"
 	"go.uber.org/fx"
+
+	middleware "github.com/JuhethAriza/inventory/src/infrastructure/http"
+
+	config "github.com/JuhethAriza/inventory/src/common/config"
+	types "github.com/JuhethAriza/inventory/src/common/types"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"

@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"log"
 
-	config "dev.azure.com/proyects-crm/CRM-ECOMMERS/_git/Backend-crm/src/common/config"
+	config "github.com/JuhethAriza/inventory/src/common/config"
+
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
