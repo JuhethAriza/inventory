@@ -1,0 +1,66 @@
+<!-- frontend/menu/menu.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background-color: #0f172a;
+      color: #f1f5f9;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    .sidebar {
+      width: 220px;
+      height: 100vh;
+      background: #1e293b;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .sidebar-header {
+      font-size: 1.4em;
+      font-weight: bold;
+      color: #38bdf8;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .menu-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .menu-list li {
+      margin: 10px 0;
+    }
+
+    .menu-list a {
+      color: #f1f5f9;
+      text-decoration: none;
+      padding: 10px 15px;
+      display: block;
+      border-radius: 8px;
+      transition: 0.2s;
+    }
+
+    .menu-list a:hover {
+      background-color: #334155;
+      color: #38bdf8;
+    }
+  </style>
+</head>
+<body>
+  <nav class="sidebar">
+    <div class="sidebar-header">Inventario</div>
+    <ul class="menu-list">
+      <li><a href="../dashboard/dashboard.html" target="_parent">🏠 Dashboard</a></li>
+      <li><a href="../producto/producto.html" target="_parent">📦 Productos</a></li>
+    </ul>
+  </nav>
+</body>
+</html>
