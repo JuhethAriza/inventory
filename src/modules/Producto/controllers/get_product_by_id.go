@@ -1,4 +1,5 @@
 package controllers
+<<<<<<< HEAD
 
 import (
 	"strconv"
@@ -31,3 +32,5 @@ func (c *GetProductByIDController) Run(ctx *fiber.Ctx) error {
 
 	return c.result.Ok(ctx, product)
 }
+=======
+>>>>>>> b4712727b6f74dd50740129b25e27533ed3e41d9

@@ -1,4 +1,5 @@
 package controllers
+<<<<<<< HEAD
 
 import (
 	r "github.com/JuhethAriza/inventory/src/common/response"
@@ -31,3 +32,5 @@ func (pc *CreateProductController) Run(c *fiber.Ctx) error {
 
 	return pc.result.Ok(c, product)
 }
+=======
+>>>>>>> b4712727b6f74dd50740129b25e27533ed3e41d9

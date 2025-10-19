@@ -1,4 +1,5 @@
 package usecases
+<<<<<<< HEAD
 
 import (
 	"fmt"
@@ -60,3 +61,5 @@ func (uc *UpdateProduct) Execute(id int, req dto.UpdateProductDTO) (*dto.Product
 
 	return resp, nil
 }
+=======
+>>>>>>> b4712727b6f74dd50740129b25e27533ed3e41d9

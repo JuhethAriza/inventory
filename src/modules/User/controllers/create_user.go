@@ -1,4 +1,5 @@
 package controllers
+<<<<<<< HEAD
 
 import (
 	"github.com/JuhethAriza/inventory/src/modules/User/domain/entities"
@@ -45,3 +46,5 @@ func (ph *CreateUsersController) Run(c *fiber.Ctx) error {
 
 	return ph.result.Ok(c, "Usuario creado exitosamente")
 }
+=======
+>>>>>>> b4712727b6f74dd50740129b25e27533ed3e41d9

@@ -1,4 +1,5 @@
 package usecases
+<<<<<<< HEAD
 
 import (
 	"errors"
@@ -25,3 +26,5 @@ func (uc *DeleteProduct) Execute(id int) error {
 	}
 	return uc.repo.DeleteProduct(id)
 }
+=======
+>>>>>>> b4712727b6f74dd50740129b25e27533ed3e41d9

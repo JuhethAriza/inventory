@@ -1,4 +1,5 @@
 package dto
+<<<<<<< HEAD
 
 type ProductResponse struct {
 	ID             uint   `json:"id,omitempty"`
@@ -11,3 +12,5 @@ type ProductResponse struct {
 	Fecha          string `json:"fecha,omitempty"`
 	Ubicacion      string `json:"ubicacion,omitempty"`
 }
+=======
+>>>>>>> b4712727b6f74dd50740129b25e27533ed3e41d9

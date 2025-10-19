@@ -1,4 +1,5 @@
 package producto
+<<<<<<< HEAD
 
 import (
 	"net/http"
@@ -74,3 +75,5 @@ func ModuleProviders() []fx.Option {
 		fx.Invoke(configureModuleRoutes),
 	}
 }
+=======
+>>>>>>> b4712727b6f74dd50740129b25e27533ed3e41d9

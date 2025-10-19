@@ -1,4 +1,5 @@
 package entities
+<<<<<<< HEAD
 
 type Product struct {
 	ID             uint   `gorm:"primaryKey;autoIncrement" json:"id"`
@@ -11,3 +12,5 @@ type Product struct {
 	Fecha          string `json:"fecha"`
 	Ubicacion      string `json:"ubicacion"`
 }
+=======
+>>>>>>> b4712727b6f74dd50740129b25e27533ed3e41d9

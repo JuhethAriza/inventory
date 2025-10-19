@@ -1,4 +1,5 @@
 package controllers
+<<<<<<< HEAD
 
 import (
 	"fmt"
@@ -80,3 +81,5 @@ func (ph *LoginUserController) Run(c *fiber.Ctx) error {
 
 	return ph.result.Ok(c, resp)
 }
+=======
+>>>>>>> b4712727b6f74dd50740129b25e27533ed3e41d9

@@ -1,4 +1,5 @@
 package usecases
+<<<<<<< HEAD
 
 import (
 	dao "github.com/JuhethAriza/inventory/src/infrastructure/db/dao"
@@ -35,3 +36,5 @@ func (uc *GetAllProducts) Execute() ([]dto.ProductResponse, error) {
 	}
 	return result, nil
 }
+=======
+>>>>>>> b4712727b6f74dd50740129b25e27533ed3e41d9

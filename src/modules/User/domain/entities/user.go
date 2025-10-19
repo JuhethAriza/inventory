@@ -1,4 +1,5 @@
 package entities
+<<<<<<< HEAD
 
 import (
 	"time"
@@ -11,3 +12,5 @@ type User struct {
 	CreatedAt time.Time `json:"created_at" gorm:"autoCreateTime"`
 	UpdatedAt time.Time `json:"updated_at" gorm:"autoUpdateTime"`
 }
+=======
+>>>>>>> b4712727b6f74dd50740129b25e27533ed3e41d9

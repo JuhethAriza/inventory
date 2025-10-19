@@ -1,4 +1,5 @@
 package controllers
+<<<<<<< HEAD
 
 import (
 	"strconv"
@@ -51,3 +52,5 @@ func (ph *GetUserByIdController) Run(c *fiber.Ctx) (err error) {
 	ph.result.Ok(c, userResponse)
 	return nil
 }
+=======
+>>>>>>> b4712727b6f74dd50740129b25e27533ed3e41d9
