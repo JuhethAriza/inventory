@@ -1,0 +1,325 @@
+/* --- Fuentes y colores base --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+:root {
+  --azul: #2563eb;
+  --azul-oscuro: #1e3a8a;
+  --gris: #f3f4f6;
+  --blanco: #ffffff;
+  --sombra: rgba(0, 0, 0, 0.1);
+  --transicion: all 0.3s ease;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e0e7ff 100%);
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* --- Layout principal --- */
+.container {
+  display: flex;
+  height: 100vh;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.menu {
+  width: 240px;
+  height: 100vh;
+  border: none;
+  flex-shrink: 0;
+}
+
+/* --- Contenido principal --- */
+.main-content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+  backdrop-filter: blur(4px);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+h1 {
+  font-size: 26px;
+  color: var(--azul-oscuro);
+  animation: slideDown 0.8s ease;
+}
+
+/* --- Botones --- */
+.btn-primary {
+  background: linear-gradient(90deg, #2563eb, #1d4ed8);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: var(--transicion);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.4);
+}
+
+/* --- Buscador --- */
+.search-box {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  transition: var(--transicion);
+}
+
+.search-box:focus {
+  outline: none;
+  border-color: var(--azul);
+  box-shadow: 0 0 5px rgba(37, 99, 235, 0.3);
+}
+
+/* --- Tabla --- */
+.tabla-contenedor {
+  background-color: var(--blanco);
+  border-radius: 10px;
+  box-shadow: 0 4px 20px var(--sombra);
+  padding: 10px;
+  overflow-x: auto;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.tabla-productos {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.tabla-productos th, .tabla-productos td {
+  padding: 14px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+.tabla-productos th {
+  background-color: #f1f5f9;
+  color: #374151;
+  font-weight: 600;
+}
+
+.tabla-productos tr:hover {
+  background-color: #eef2ff;
+  transition: 0.3s;
+}
+
+.btn-eliminar {
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transicion);
+}
+
+.btn-eliminar:hover {
+  transform: scale(1.1);
+  background: linear-gradient(90deg, #dc2626, #991b1b);
+}
+
+/* --- Modal --- */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 20;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(5px);
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.4s ease;
+}
+
+.modal-content {
+  background-color: var(--blanco);
+  padding: 25px;
+  border-radius: 12px;
+  width: 420px;
+  max-width: 90%;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+  transform: scale(0.95);
+  animation: popUp 0.3s forwards;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  color: var(--azul);
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* --- Formulario --- */
+.form-producto {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.4s ease;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: var(--transicion);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--azul);
+  box-shadow: 0 0 5px rgba(37, 99, 235, 0.3);
+  transform: scale(1.02);
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.btn-guardar, .btn-cancelar {
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: var(--transicion);
+}
+
+.btn-guardar {
+  background: linear-gradient(90deg, #2563eb, #1d4ed8);
+  color: white;
+  box-shadow: 0 3px 10px rgba(37,99,235,0.3);
+}
+
+.btn-guardar:hover {
+  transform: scale(1.05);
+}
+
+.btn-cancelar {
+  background: linear-gradient(90deg, #9ca3af, #6b7280);
+  color: white;
+}
+
+.btn-cancelar:hover {
+  transform: scale(1.05);
+}
+
+/* --- Animaciones --- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes popUp {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* 🔹 Estilos del popup de confirmación */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.popup.hidden {
+  display: none;
+}
+
+.popup-content {
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.popup-buttons {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.popup-buttons .confirm {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.popup-buttons .cancel {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.popup-buttons button:hover {
+  opacity: 0.9;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+

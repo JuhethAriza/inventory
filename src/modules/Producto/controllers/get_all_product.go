@@ -1,1 +1,27 @@
 package controllers
+<<<<<<< HEAD
+
+import (
+	r "github.com/JuhethAriza/inventory/src/common/response"
+	"github.com/JuhethAriza/inventory/src/modules/Producto/usecases"
+	"github.com/gofiber/fiber/v2"
+)
+
+type GetAllProductsController struct {
+	usecase *usecases.GetAllProducts
+	result  *r.Result
+}
+
+func NewGetAllProductsController(uc *usecases.GetAllProducts, r *r.Result) *GetAllProductsController {
+	return &GetAllProductsController{usecase: uc, result: r}
+}
+
+func (c *GetAllProductsController) Run(ctx *fiber.Ctx) error {
+	products, err := c.usecase.Execute()
+	if err != nil {
+		return c.result.Error(ctx, err.Error())
+	}
+	return c.result.Ok(ctx, products)
+}
+=======
+>>>>>>> b4712727b6f74dd50740129b25e27533ed3e41d9

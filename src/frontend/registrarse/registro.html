@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrarse</title>
+  <link rel="stylesheet" href="registro.css">
+</head>
+<body>
+  <div class="contenedor">
+    <h1>Crear Cuenta</h1>
+    <form id="registroForm">
+      <div id="errorMessage" class="error-message"></div>
+
+      <div class="Email">
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" placeholder="usuario@gmail.com" required>
+      </div>
+
+      <div class="Password">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" name="password" placeholder="Contraseña" required minlength="6">
+      </div>
+
+      <input type="submit" value="Registrarse">
+
+      <div class="registrarse">
+        ¿Ya tienes cuenta? <a href="../login/login.html">Inicia sesión</a>
+      </div>
+    </form>
+  </div>
+
+  <!-- Popup de éxito -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <h3>✅ Registro exitoso</h3>
+      <p>Tu cuenta se ha creado correctamente.</p>
+      <button id="popupAceptar">Aceptar</button>
+    </div>
+  </div>
+
+  <script src="registro.js"></script>
+</body>
+</html>
