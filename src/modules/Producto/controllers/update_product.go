@@ -1,5 +1,4 @@
 package controllers
-<<<<<<< HEAD
 
 import (
 	"strconv"
@@ -38,5 +37,3 @@ func (c *UpdateProductController) Run(ctx *fiber.Ctx) error {
 
 	return c.result.Ok(ctx, resp)
 }
-=======
->>>>>>> b4712727b6f74dd50740129b25e27533ed3e41d9

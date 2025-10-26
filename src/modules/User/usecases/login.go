@@ -1,5 +1,4 @@
 package usecases
-<<<<<<< HEAD
 
 import (
 	"errors"
@@ -39,5 +38,3 @@ func (l *LoginUser) Execute(payload dto.LoginDTO) (string, *entities.User, error
 
 	return token, &user, nil
 }
-=======
->>>>>>> b4712727b6f74dd50740129b25e27533ed3e41d9

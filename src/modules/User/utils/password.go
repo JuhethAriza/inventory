@@ -1,5 +1,4 @@
 package utils
-<<<<<<< HEAD
 
 import (
 	"fmt"
@@ -63,5 +62,3 @@ func GenerateSecurePassword(length int) string {
 	}
 	return string(password)
 }
-=======
->>>>>>> b4712727b6f74dd50740129b25e27533ed3e41d9

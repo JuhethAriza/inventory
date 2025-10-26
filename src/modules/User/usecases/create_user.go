@@ -1,5 +1,4 @@
 package usecases
-<<<<<<< HEAD
 
 import (
 	dao "github.com/JuhethAriza/inventory/src/infrastructure/db/dao"
@@ -26,5 +25,3 @@ func (u *CreateUsers) Execute(user *entities.User) error {
 	user.Password = string(hashed)
 	return u.repo.CreateUser(user)
 }
-=======
->>>>>>> b4712727b6f74dd50740129b25e27533ed3e41d9

@@ -27,9 +27,5 @@ func (ps *ProvidersStore) AddModule(p []fx.Option) {
 
 func (ps *ProvidersStore) Up(lp ...[]fx.Option) {
 	ps.Providers = append(ps.Providers, fx.Invoke(NewHttpFiberServer))
-<<<<<<< HEAD
-
-=======
->>>>>>> b4712727b6f74dd50740129b25e27533ed3e41d9
 	fx.New(ps.Providers...).Run()
 }
