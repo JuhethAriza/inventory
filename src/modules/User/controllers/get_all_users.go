@@ -1,5 +1,4 @@
 package controllers
-<<<<<<< HEAD
 
 import (
 	r "github.com/JuhethAriza/inventory/src/common/response"
@@ -37,5 +36,3 @@ func (ph *GetAllUsersController) Run(c *fiber.Ctx) error {
 
 	return ph.result.Ok(c, usersResponse)
 }
-=======
->>>>>>> b4712727b6f74dd50740129b25e27533ed3e41d9

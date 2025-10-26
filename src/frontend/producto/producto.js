@@ -1,215 +1,140 @@
-const API_URL = "http://localhost:8080/products";
-
-const form = document.getElementById("formProducto");
-const lista = document.getElementById("listaProductos");
-const modal = document.getElementById("modalNuevoProducto");
+// ==================== VARIABLES ====================
 const btnNuevo = document.getElementById("btnNuevo");
+const modal = document.getElementById("modalNuevoProducto");
 const btnCancelar = document.getElementById("btnCancelar");
-const btnGuardar = document.getElementById("btnGuardar");
-const inputBuscar = document.getElementById("buscar");
+const form = document.getElementById("formProducto");
+const listaProductos = document.getElementById("listaProductos");
+const buscar = document.getElementById("buscar");
+const btnExportar = document.getElementById("btnExportar");
 
-let editando = false;
-let productoActualId = null;
+let productos = JSON.parse(localStorage.getItem("productos")) || [];
+let idEditar = null;
 
-async function parseErrorResponse(res) {
-  let text = `${res.status} ${res.statusText}`;
-  try {
-    const json = await res.json();
-    if (json.message) text += ` — ${json.message}`;
-    else if (json.error) text += ` — ${json.error}`;
-    else text += ` — ${JSON.stringify(json)}`;
-  } catch {
-    const t = await res.text();
-    if (t) text += ` — ${t}`;
-  }
-  return text;
+// ==================== MOSTRAR PRODUCTOS ====================
+function mostrarProductos(filtro = "") {
+  listaProductos.innerHTML = "";
+
+  productos
+    .filter(p =>
+      p.item.toLowerCase().includes(filtro.toLowerCase()) ||
+      p.codigo.toLowerCase().includes(filtro.toLowerCase())
+    )
+    .forEach((p, index) => {
+      const fila = document.createElement("tr");
+      fila.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${p.codigo}</td>
+        <td>${p.item}</td>
+        <td>${p.cantidad}</td>
+        <td>${p.categoria}</td>
+        <td>${p.estado}</td>
+        <td>${p.proveedor}</td>
+        <td>${p.fecha}</td>
+        <td>${p.ubicacion}</td>
+        <td>
+          <button onclick="editarProducto(${index})" class="btn-accion">✏</button>
+          <button onclick="eliminarProducto(${index})" class="btn-accion">🗑</button>
+        </td>`;
+      listaProductos.appendChild(fila);
+    });
 }
 
-// 🔹 Abrir modal nuevo producto
+// ==================== ABRIR Y CERRAR MODAL ====================
 btnNuevo.addEventListener("click", () => {
+  idEditar = null;
   form.reset();
-  editando = false;
-  productoActualId = null;
-  btnGuardar.innerText = "Guardar";
   modal.style.display = "flex";
 });
 
-// 🔹 Cerrar modal
 btnCancelar.addEventListener("click", () => {
   modal.style.display = "none";
 });
 
-window.addEventListener("click", (e) => {
-  if (e.target === modal) modal.style.display = "none";
-});
-
-// 🔹 Cargar productos
-async function cargarProductos() {
-  try {
-    const res = await fetch(`${API_URL}/GetAll`);
-    if (!res.ok) {
-      const err = await parseErrorResponse(res);
-      alert("Error al cargar productos:\n" + err);
-      return;
-    }
-    const data = await res.json();
-    const productos = Array.isArray(data) ? data : data.data || [];
-    renderTabla(productos);
-  } catch {
-    alert("No se pudo conectar con el servidor");
-  }
-}
-
-// 🔹 Renderizar tabla
-function renderTabla(items) {
-  lista.innerHTML = "";
-  if (!items.length) {
-    lista.innerHTML = `<tr><td colspan="9" style="text-align:center;">No hay productos</td></tr>`;
-    return;
-  }
-  items.forEach((p) => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${p.id || ""}</td>
-      <td>${p.codigo_producto || p.codigo || ""}</td>
-      <td>${p.item || ""}</td>
-      <td>${p.cantidad || ""}</td>
-      <td>${p.categoria || ""}</td>
-      <td>${p.estado || ""}</td>
-      <td>${p.proveedor || ""}</td>
-      <td>${p.fecha || ""}</td>
-      <td>${p.ubicacion || ""}</td>
-      <td>
-        <button class="btn-editar" data-id="${p.id}">✏️</button>
-        <button class="btn-eliminar" data-id="${p.id}">🗑️</button>
-      </td>
-    `;
-    lista.appendChild(tr);
-  });
-
-  document.querySelectorAll(".btn-eliminar").forEach((b) => {
-    b.addEventListener("click", () => eliminarProducto(b.dataset.id));
-  });
-
-  document.querySelectorAll(".btn-editar").forEach((b) => {
-    b.addEventListener("click", () => editarProducto(b.dataset.id));
-  });
-}
-
-// 🔹 Guardar o actualizar
-form.addEventListener("submit", async (e) => {
+// ==================== GUARDAR PRODUCTO ====================
+form.addEventListener("submit", (e) => {
   e.preventDefault();
-
-  const data = {};
-  new FormData(form).forEach((val, key) => {
-    if (key === "codigo") key = "codigo_producto";
-    if (key === "cantidad") data[key] = parseInt(val, 10);
-    else data[key] = val;
-  });
-
-  btnGuardar.disabled = true;
-  btnGuardar.innerText = editando ? "Actualizando..." : "Guardando...";
-
   try {
-    let res;
-    if (editando && productoActualId) {
-      // ✅ UPDATE producto existente
-      res = await fetch(`${API_URL}/Update/${productoActualId}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+    const nuevoProducto = {
+      codigo: document.getElementById("codigo").value.trim(),
+      item: document.getElementById("item").value.trim(),
+      cantidad: document.getElementById("cantidad").value.trim(),
+      categoria: document.getElementById("categoria").value.trim(),
+      estado: document.getElementById("estado").value,
+      proveedor: document.getElementById("proveedor").value.trim(),
+      fecha: document.getElementById("fecha").value,
+      ubicacion: document.getElementById("ubicacion").value.trim(),
+    };
+
+    if (!nuevoProducto.codigo || !nuevoProducto.item) {
+      alert("Por favor completa todos los campos obligatorios.");
+      return;
+    }
+
+    if (idEditar === null) {
+      productos.push(nuevoProducto);
     } else {
-      // ✅ CREATE nuevo producto
-      res = await fetch(`${API_URL}/Create`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      productos[idEditar] = nuevoProducto;
     }
 
-    if (!res.ok) {
-      const err = await parseErrorResponse(res);
-      alert("No se pudo guardar el producto:\n" + err);
-      return;
-    }
-
-    await cargarProductos();
+    localStorage.setItem("productos", JSON.stringify(productos));
+    mostrarProductos();
     modal.style.display = "none";
-  } catch {
+  } catch (error) {
+    console.error("Error al guardar producto:", error);
     alert("Error al guardar producto. Revisa consola.");
-  } finally {
-    btnGuardar.disabled = false;
-    btnGuardar.innerText = "Guardar";
   }
 });
 
-// 🔹 Editar producto
-function editarProducto(id) {
-  console.log("🟦 Editando producto con ID:", id);
-  const fila = document.querySelector(`button[data-id="${id}"]`).closest("tr");
-  const celdas = fila.querySelectorAll("td");
+// ==================== EDITAR ====================
+window.editarProducto = function (index) {
+  idEditar = index;
+  const p = productos[index];
 
-  // Asignar valores a los inputs
-  document.getElementById("codigo").value = celdas[1].innerText;
-  document.getElementById("item").value = celdas[2].innerText;
-  document.getElementById("cantidad").value = celdas[3].innerText;
-  document.getElementById("categoria").value = celdas[4].innerText;
-  document.getElementById("estado").value = celdas[5].innerText;
-  document.getElementById("proveedor").value = celdas[6].innerText;
-  document.getElementById("fecha").value = celdas[7].innerText;
-  document.getElementById("ubicacion").value = celdas[8].innerText;
+  document.getElementById("codigo").value = p.codigo;
+  document.getElementById("item").value = p.item;
+  document.getElementById("cantidad").value = p.cantidad;
+  document.getElementById("categoria").value = p.categoria;
+  document.getElementById("estado").value = p.estado;
+  document.getElementById("proveedor").value = p.proveedor;
+  document.getElementById("fecha").value = p.fecha;
+  document.getElementById("ubicacion").value = p.ubicacion;
 
-  // Activar modo edición
-  editando = true;
-  productoActualId = id;
-
-  btnGuardar.innerText = "Actualizar";
   modal.style.display = "flex";
-}
+};
 
-// 🔹 Popup de confirmación para eliminar
-let productoAEliminar = null;
+// ==================== ELIMINAR ====================
+window.eliminarProducto = function (index) {
+  if (confirm("¿Deseas eliminar este producto?")) {
+    productos.splice(index, 1);
+    localStorage.setItem("productos", JSON.stringify(productos));
+    mostrarProductos();
+  }
+};
 
-function eliminarProducto(id) {
-  productoAEliminar = id;
-  document.getElementById("popupConfirm").classList.remove("hidden");
-}
+// ==================== BUSCAR ====================
+buscar.addEventListener("input", () => mostrarProductos(buscar.value));
 
-document.getElementById("btnConfirmDelete").addEventListener("click", async () => {
-  if (!productoAEliminar) return;
-
-  try {
-    const res = await fetch(`${API_URL}/Delete/${productoAEliminar}`, {
-      method: "DELETE",
-    });
-    if (!res.ok) {
-      const err = await parseErrorResponse(res);
-      alert("Error al eliminar producto:\n" + err);
+// ==================== EXPORTAR ====================
+if (btnExportar) {
+  btnExportar.addEventListener("click", () => {
+    if (productos.length === 0) {
+      alert("No hay productos para exportar");
       return;
     }
-    await cargarProductos();
-  } catch {
-    alert("Error al eliminar producto.");
-  } finally {
-    productoAEliminar = null;
-    document.getElementById("popupConfirm").classList.add("hidden");
-  }
-});
 
-document.getElementById("btnCancelDelete").addEventListener("click", () => {
-  productoAEliminar = null;
-  document.getElementById("popupConfirm").classList.add("hidden");
-});
+    const encabezado = Object.keys(productos[0]).join(",");
+    const filas = productos.map(p => Object.values(p).join(","));
+    const csv = [encabezado, ...filas].join("\n");
 
-// 🔹 Búsqueda en tiempo real
-if (inputBuscar) {
-  inputBuscar.addEventListener("input", () => {
-    const q = inputBuscar.value.toLowerCase();
-    document.querySelectorAll("#listaProductos tr").forEach((tr) => {
-      tr.style.display = tr.innerText.toLowerCase().includes(q) ? "" : "none";
-    });
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "productos.csv";
+    link.click();
+    URL.revokeObjectURL(url);
   });
 }
 
-window.addEventListener("DOMContentLoaded", cargarProductos);
+// ==================== INICIALIZAR ====================
+mostrarProductos();

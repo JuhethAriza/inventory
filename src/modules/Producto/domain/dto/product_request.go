@@ -1,5 +1,4 @@
 package dto
-<<<<<<< HEAD
 
 type ProductDTO struct {
 	ID             uint   `json:"id"`
@@ -23,5 +22,3 @@ type UpdateProductDTO struct {
 	Fecha          string `json:"fecha" validate:"required"`
 	Ubicacion      string `json:"ubicacion" validate:"required"`
 }
-=======
->>>>>>> b4712727b6f74dd50740129b25e27533ed3e41d9

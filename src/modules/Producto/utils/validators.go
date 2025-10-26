@@ -1,5 +1,4 @@
 package utils
-<<<<<<< HEAD
 
 import (
 	"errors"
@@ -58,5 +57,3 @@ func ValidateUpdateProduct(req dto.UpdateProductDTO) error {
 	}
 	return nil
 }
-=======
->>>>>>> b4712727b6f74dd50740129b25e27533ed3e41d9
