@@ -5,7 +5,8 @@ type Product struct {
 	CodigoProducto string `json:"codigo_producto"`
 	Item           string `json:"item"`
 	Cantidad       int    `json:"cantidad"`
-	Categoria      string `json:"categoria"`
+	Descripcion    string `json:"descripcion"`
+	Observacion    string `json:"observacion"`
 	Estado         string `json:"estado"`
 	Proveedor      string `json:"proveedor"`
 	Fecha          string `json:"fecha"`

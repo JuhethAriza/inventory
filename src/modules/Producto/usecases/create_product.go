@@ -16,11 +16,11 @@ type CreateProduct struct {
 
 func NewCreateProduct(repo *dao.MySQLProductDao) *CreateProduct {
 	return &CreateProduct{
-		repo: repo}
+		repo: repo,
+	}
 }
 
-func (uc *CreateProduct) Execute(request dto.ProductDTO) (*entities.Product, error) {
-
+func (uc *CreateProduct) Execute(request dto.ProductDTO) (*dto.ProductResponse, error) {
 	if err := utils.ValidateProductDTO(request); err != nil {
 		return nil, err
 	}
@@ -37,7 +37,8 @@ func (uc *CreateProduct) Execute(request dto.ProductDTO) (*entities.Product, err
 		CodigoProducto: request.CodigoProducto,
 		Item:           request.Item,
 		Cantidad:       request.Cantidad,
-		Categoria:      request.Categoria,
+		Descripcion:    request.Descripcion,
+		Observacion:    request.Observacion,
 		Estado:         request.Estado,
 		Proveedor:      request.Proveedor,
 		Fecha:          request.Fecha,
@@ -48,5 +49,18 @@ func (uc *CreateProduct) Execute(request dto.ProductDTO) (*entities.Product, err
 		return nil, err
 	}
 
-	return &product, nil
+	response := &dto.ProductResponse{
+		ID:             product.ID,
+		CodigoProducto: product.CodigoProducto,
+		Item:           product.Item,
+		Cantidad:       product.Cantidad,
+		Descripcion:    product.Descripcion,
+		Observacion:    product.Observacion,
+		Estado:         product.Estado,
+		Proveedor:      product.Proveedor,
+		Ubicacion:      product.Ubicacion,
+		Fecha:          product.Fecha,
+	}
+
+	return response, nil
 }

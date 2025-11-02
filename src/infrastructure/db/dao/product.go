@@ -16,10 +16,10 @@ func NewMySQLProductDao(connection *db.DBConnection) *MySQLProductDao {
 
 func (dao *MySQLProductDao) CreateProduct(product entities.Product) error {
 	query := `
-	INSERT INTO products (codigo_producto, item, cantidad, categoria, estado, proveedor, fecha, ubicacion)
-	VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+	INSERT INTO products (codigo_producto, item, cantidad, descripcion, observacion, estado, proveedor, fecha, ubicacion)
+	VALUES (?, ?, ?, ?, ?,?, ?, ?, ?)
 	`
-	result := dao.db.Exec(query, product.CodigoProducto, product.Item, product.Cantidad, product.Categoria, product.Estado, product.Proveedor, product.Fecha, product.Ubicacion)
+	result := dao.db.Exec(query, product.CodigoProducto, product.Item, product.Cantidad, product.Descripcion, product.Observacion, product.Estado, product.Proveedor, product.Fecha, product.Ubicacion)
 	return result.Error
 }
 

@@ -5,7 +5,8 @@ type ProductResponse struct {
 	CodigoProducto string `json:"codigo_producto,omitempty"`
 	Item           string `json:"item,omitempty"`
 	Cantidad       int    `json:"cantidad,omitempty"`
-	Categoria      string `json:"categoria,omitempty"`
+	Descripcion    string `json:"descripcion,omitempty"`
+	Observacion    string `json:"observacion,omitempty"`
 	Estado         string `json:"estado,omitempty"`
 	Proveedor      string `json:"proveedor,omitempty"`
 	Fecha          string `json:"fecha,omitempty"`
