@@ -38,7 +38,8 @@ func (uc *UpdateProduct) Execute(id int, req dto.UpdateProductDTO) (*dto.Product
 	product.CodigoProducto = req.CodigoProducto
 	product.Item = req.Item
 	product.Cantidad = req.Cantidad
-	product.Categoria = req.Categoria
+	product.Descripcion = req.Descripcion
+	product.Observacion = req.Observacion
 	product.Proveedor = req.Proveedor
 	product.Ubicacion = req.Ubicacion
 	product.Fecha = req.Fecha
@@ -52,7 +53,8 @@ func (uc *UpdateProduct) Execute(id int, req dto.UpdateProductDTO) (*dto.Product
 		CodigoProducto: product.CodigoProducto,
 		Item:           product.Item,
 		Cantidad:       product.Cantidad,
-		Categoria:      product.Categoria,
+		Descripcion:    product.Descripcion,
+		Observacion:    product.Observacion,
 		Proveedor:      product.Proveedor,
 		Ubicacion:      product.Ubicacion,
 		Fecha:          product.Fecha,
