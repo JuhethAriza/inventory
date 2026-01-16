@@ -16,6 +16,7 @@ func configureModuleRoutes(
 	ctrlUpdateProduct *controllers.UpdateProductController,
 	ctrlDeleteProduct *controllers.DeleteProductController,
 	ctrlGetProductByID *controllers.GetProductByIDController,
+	ctrlExportFile *controllers.ExportFileController,
 	h *types.HandlersStore,
 ) {
 
@@ -52,6 +53,12 @@ func configureModuleRoutes(
 				Handler:      ctrlGetProductByID.Run,
 				RequiresAuth: false,
 			},
+			{
+				Method:       http.MethodGet,
+				Route:        "/Export",
+				Handler:      ctrlExportFile.Run,
+				RequiresAuth: false,
+			},
 		},
 	}
 	h.Handlers = append(h.Handlers, *handlersModuleProducts)
@@ -71,6 +78,8 @@ func ModuleProviders() []fx.Option {
 		fx.Provide(usecases.NewDeleteProduct),
 		fx.Provide(controllers.NewGetProductByIDController),
 		fx.Provide(usecases.NewGetProductByID),
+		fx.Provide(controllers.NewExportFileController),
+		fx.Provide(usecases.NewExportFile),
 		fx.Invoke(configureModuleRoutes),
 	}
 }
