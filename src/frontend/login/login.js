@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // 🔹 Guardar token y redirigir
       if (data.data?.token) {
         localStorage.setItem('token', data.data.token);
-        window.location.href = '../dashboard/dashboard.html';
+        window.location.href = '../producto/producto.html';
       } else {
         showError('Token no recibido del servidor.');
       }
