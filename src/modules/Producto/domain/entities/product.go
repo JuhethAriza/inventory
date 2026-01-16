@@ -11,3 +11,8 @@ type Product struct {
 	Fecha          string `json:"fecha"`
 	Ubicacion      string `json:"ubicacion"`
 }
+
+// TableName especifica el nombre de la tabla en la base de datos
+func (Product) TableName() string {
+	return "products"
+}
