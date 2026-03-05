@@ -24,7 +24,7 @@ async function getAllProducts() {
 
     mostrarProductos();
   } catch (err) {
-    console.error("❌ Error al obtener productos:", err);
+    console.error("Error al obtener productos:", err);
     listaProductos.innerHTML = `<tr><td colspan="9" style="text-align:center;color:red;">Error al cargar productos</td></tr>`;
   }
 }
@@ -43,7 +43,7 @@ async function createProduct(producto) {
 
     await getAllProducts();
   } catch (err) {
-    console.error("❌ Error al crear producto:", err);
+    console.error("Error al crear producto:", err);
     alert("Error al crear producto. Revisa consola.");
   }
 }
@@ -59,7 +59,7 @@ async function updateProduct(id, producto) {
 
     await getAllProducts();
   } catch (err) {
-    console.error("❌ Error al actualizar producto:", err);
+    console.error("Error al actualizar producto:", err);
   }
 }
 
@@ -70,11 +70,10 @@ async function deleteProduct(id) {
 
     await getAllProducts();
   } catch (err) {
-    console.error("❌ Error al eliminar producto:", err);
+    console.error("Error al eliminar producto:", err);
   }
 }
 
-// ==================== MOSTRAR PRODUCTOS ====================
 function mostrarProductos(filtro = "") {
   listaProductos.innerHTML = "";
 
@@ -150,7 +149,6 @@ form.addEventListener("submit", async (e) => {
   form.reset();
 });
 
-// ==================== EDITAR ====================
 window.editarProducto = function (id) {
   const p = productos.find((prod) => prod.id === id);
   if (!p) return;
@@ -168,7 +166,6 @@ window.editarProducto = function (id) {
   modal.style.display = "flex";
 };
 
-// ==================== ELIMINAR ====================
 window.eliminarProducto = async function (id) {
   if (confirm("¿Deseas eliminar este producto?")) {
     await deleteProduct(id);
@@ -236,5 +233,4 @@ btnExportar?.addEventListener("click", () => {
 });
 
 
-// ==================== INICIALIZAR ====================
 getAllProducts();

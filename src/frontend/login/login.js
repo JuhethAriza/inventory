@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const errorElement = document.getElementById('errorMessage');
   const submitButton = form.querySelector('input[type="submit"]');
 
-  // 🔹 Loader dinámico
+  // Loader dinámico
   const loader = document.createElement('span');
   loader.classList.add('loader');
   loader.style.display = 'none';
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     errorElement.style.display = 'none';
     errorElement.textContent = '';
 
-    // 🔹 Validaciones básicas
+    //  Validaciones básicas
     if (!email) {
       showError('El correo es obligatorio');
       return;
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // 🔹 Mostrar loader
+    //  Mostrar loader
     submitButton.disabled = true;
     submitButton.value = 'Procesando...';
     loader.style.display = 'inline-block';
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         throw new Error(data.message || 'Error en el inicio de sesión');
       }
 
-      // 🔹 Guardar token y redirigir
+      // Guardar token y redirigir
       if (data.data?.token) {
         localStorage.setItem('token', data.data.token);
         window.location.href = '../producto/producto.html';
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 🔹 Función para mostrar errores
+
   function showError(msg) {
     errorElement.textContent = msg;
     errorElement.style.display = 'block';
