@@ -27,8 +27,8 @@ func (uc *ExportFile) Execute() (*excelize.File, error) {
 	sheetName := "Sheet1" // Usar el nombre por defecto primero
 
 	// Definir los encabezados
-	headers := []string{"ID", "Código Producto", "Item", "Cantidad", "Categoría", "Estado", "Valor Estimado", "Fecha", "Ubicación"}
-	
+	headers := []string{"ID", "Código Producto", "Item", "Cantidad", "Estado", "Valor Estimado", "Fecha", "Ubicación"}
+
 	// Estilo para los encabezados
 	headerStyle, err := f.NewStyle(&excelize.Style{
 		Font: &excelize.Font{
@@ -89,33 +89,27 @@ func (uc *ExportFile) Execute() (*excelize.File, error) {
 			return nil, fmt.Errorf("error al escribir Cantidad: %w", err)
 		}
 
-		// Columna E (Categoría)
+		// Columna E (Estado)
 		cellE, _ := excelize.CoordinatesToCellName(5, excelRow)
-		if err := f.SetCellValue(sheetName, cellE, product.Categoria); err != nil {
-			return nil, fmt.Errorf("error al escribir Categoría: %w", err)
-		}
-
-		// Columna F (Estado)
-		cellF, _ := excelize.CoordinatesToCellName(6, excelRow)
-		if err := f.SetCellValue(sheetName, cellF, product.Estado); err != nil {
+		if err := f.SetCellValue(sheetName, cellE, product.Estado); err != nil {
 			return nil, fmt.Errorf("error al escribir Estado: %w", err)
 		}
 
-		// Columna G (Valor Estimado - usando el campo Proveedor como valor)
-		cellG, _ := excelize.CoordinatesToCellName(7, excelRow)
-		if err := f.SetCellValue(sheetName, cellG, product.Proveedor); err != nil {
+		// Columna F (Valor Estimado)
+		cellF, _ := excelize.CoordinatesToCellName(6, excelRow)
+		if err := f.SetCellValue(sheetName, cellF, product.Proveedor); err != nil {
 			return nil, fmt.Errorf("error al escribir Valor Estimado: %w", err)
 		}
 
-		// Columna H (Fecha)
-		cellH, _ := excelize.CoordinatesToCellName(8, excelRow)
-		if err := f.SetCellValue(sheetName, cellH, product.Fecha); err != nil {
+		// Columna G (Fecha)
+		cellG, _ := excelize.CoordinatesToCellName(7, excelRow)
+		if err := f.SetCellValue(sheetName, cellG, product.Fecha); err != nil {
 			return nil, fmt.Errorf("error al escribir Fecha: %w", err)
 		}
 
-		// Columna I (Ubicación)
-		cellI, _ := excelize.CoordinatesToCellName(9, excelRow)
-		if err := f.SetCellValue(sheetName, cellI, product.Ubicacion); err != nil {
+		// Columna H (Ubicación)
+		cellH, _ := excelize.CoordinatesToCellName(8, excelRow)
+		if err := f.SetCellValue(sheetName, cellH, product.Ubicacion); err != nil {
 			return nil, fmt.Errorf("error al escribir Ubicación: %w", err)
 		}
 	}
