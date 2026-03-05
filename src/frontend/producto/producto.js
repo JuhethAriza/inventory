@@ -25,7 +25,7 @@ async function getAllProducts() {
     mostrarProductos();
   } catch (err) {
     console.error("❌ Error al obtener productos:", err);
-    listaProductos.innerHTML = `<tr><td colspan="10" style="text-align:center;color:red;">Error al cargar productos</td></tr>`;
+    listaProductos.innerHTML = `<tr><td colspan="9" style="text-align:center;color:red;">Error al cargar productos</td></tr>`;
   }
 }
 
@@ -97,7 +97,6 @@ function mostrarProductos(filtro = "") {
         <td>${p.codigo_producto || "-"}</td>
         <td>${p.item || "-"}</td>
         <td>${p.cantidad || "-"}</td>
-        <td>${p.categoria || "-"}</td>
         <td>${p.estado || "-"}</td>
         <td>${p.proveedor || "-"}</td>
         <td>${p.fecha || "-"}</td>
@@ -130,7 +129,6 @@ form.addEventListener("submit", async (e) => {
     codigo_producto: document.getElementById("codigo").value.trim(),
     item: document.getElementById("item").value.trim(),
     cantidad: parseInt(document.getElementById("cantidad").value.trim(), 10),
-    categoria: document.getElementById("categoria").value.trim(),
     estado: document.getElementById("estado").value,
     proveedor: document.getElementById("proveedor").value.trim(),
     fecha: document.getElementById("fecha").value,
@@ -162,7 +160,6 @@ window.editarProducto = function (id) {
   document.getElementById("codigo").value = p.codigo_producto;
   document.getElementById("item").value = p.item;
   document.getElementById("cantidad").value = p.cantidad;
-  document.getElementById("categoria").value = p.categoria;
   document.getElementById("estado").value = p.estado;
   document.getElementById("proveedor").value = p.proveedor;
   document.getElementById("fecha").value = p.fecha;
@@ -194,7 +191,7 @@ btnExportar?.addEventListener("click", () => {
     "codigo_producto",
     "item",
     "cantidad",
-    "categoria",
+
     "estado",
     "proveedor",
     "fecha",
@@ -206,7 +203,6 @@ btnExportar?.addEventListener("click", () => {
     "Código",
     "Item",
     "Cantidad",
-    "Categoría",
     "Estado",
     "Proveedor",
     "Fecha",

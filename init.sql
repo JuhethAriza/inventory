@@ -21,7 +21,6 @@ CREATE TABLE IF NOT EXISTS products (
     codigo_producto VARCHAR(255),
     item VARCHAR(255),
     cantidad INT,
-    categoria VARCHAR(255),
     estado VARCHAR(255),
     proveedor VARCHAR(255),
     fecha VARCHAR(255),
