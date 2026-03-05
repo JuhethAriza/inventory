@@ -48,17 +48,3 @@ body {
       background-color: #334155;
       color: #38bdf8;
 }
-
-.company-logo-container {
-      margin-top: auto;
-      padding-top: 20px;
-      text-align: center;
-      border-top: 1px solid #334155;
-}
-
-.company-logo {
-      max-width: 100%;
-      height: auto;
-      max-height: 120px;
-      object-fit: contain;
-}
